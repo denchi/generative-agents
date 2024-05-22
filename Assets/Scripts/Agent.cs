@@ -9,7 +9,7 @@ public class Agent : MonoBehaviour
     public MemoryStream MemoryStream;
     public ReflectionSystem ReflectionSystem;
     public PlanningSystem PlanningSystem;
-	    private List<Plan> currentPlans;
+	    private Stack<Plan> currentPlans;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class Agent : MonoBehaviour
         Profile = new AgentProfile("Harry", new List<string> { "dedicated", "observant" });
 
         // Generate initial plans
-        currentPlans = PlanningSystem.GenerateDailyPlan(Profile);
+        currentPlans = new Stack<Plan>(PlanningSystem.GenerateDailyPlan(Profile));
     }
 
     void Update()
@@ -27,8 +27,8 @@ public class Agent : MonoBehaviour
         // Execute current plan
         if (currentPlans.Count > 0)
         {
-            ExecutePlan(currentPlans[0]);
-            currentPlans.RemoveAt(0);
+            ExecutePlan(crrentPlans.Peek());
+            currentPlans.Pop();
         }
 
         // Example interaction
@@ -38,9 +38,10 @@ public class Agent : MonoBehaviour
         }
     }
 
-    private void ExecutePlan(Plan plan){
+    private void ExecutePlan( Plan plan)
+    {
         // Execute the plan (stubbed for now)
-        Debug.Log(String.Format("%s is performing action: %s for %s in minutes.", AgentName, plan.Action, plan.Duration.TotalMinutes));
+        Debug.Log(String.Format("%ss is performing action: %s for %s in minutes.", AgentName, plan.Action, plan.Duration.TotalMinutes));
     }
 
     private void InteractWithEnvironment(string location, string observation)
