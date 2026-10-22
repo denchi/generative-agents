@@ -1,6 +1,6 @@
 # Generative Agents
 
-A basic Unity project to implement generative agents with memory, reflection, and planning capabilities for 2D side-scroller games.
+Prototype code for exploring agent memory, reflection, and planning in a 2D side-scroller. The repository currently contains four scripts, not a complete Unity game.
 
 This repository is an early prototype of that goal. It contains four C# scripts under `Assets/Scripts`. There is no Unity project, no scene, and no side-scroller gameplay. The scripts sketch a memory stream, a reflection step, and a daily plan for one sample character. As committed, they do not compile.
 
